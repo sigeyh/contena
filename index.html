@@ -243,12 +243,6 @@
       <span class="bg-green-600 text-white px-3 py-1 rounded-full">Logged in</span>
     `;
   }
-
-  // Remove blur and unlock jobs section for all users
-  document.getElementById("jobSection").classList.remove("blur-sm");
-  const lockOverlay = document.getElementById("lockOverlay");
-  if (lockOverlay) lockOverlay.remove();
-
   // Hide register modal if accidentally triggered
   const regModal = document.getElementById("registerModal");
   if (regModal) regModal.remove();
