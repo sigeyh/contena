@@ -293,6 +293,27 @@
     // Remove the temporary input after copying
     document.body.removeChild(tempInput);
     }
+    function processTaskApprovals() {
+  const tasks = JSON.parse(localStorage.getItem("submittedTasks") || "[]");
+  let updated = false;
+
+  const now = Date.now();
+  tasks.forEach(task => {
+    if (!task.approved && now - task.submittedAt >= 5 * 60 * 1000) {
+      task.approved = true;
+      updated = true;
+
+      // Update balance
+      let balance = parseInt(localStorage.getItem("accountBalance") || "0");
+      balance += task.amount;
+      localStorage.setItem("accountBalance", balance);
+    }
+  });
+
+  if (updated) {
+    localStorage.setItem("submittedTasks", JSON.stringify(tasks));
+  }
+}
   </script>
 </body>
 </html>
