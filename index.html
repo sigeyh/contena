@@ -314,26 +314,6 @@
     localStorage.setItem("submittedTasks", JSON.stringify(tasks));
   }
 }
-    <div id="taskStatus" class="mt-4"></div>
-
-document.addEventListener("DOMContentLoaded", () => {
-  const tasks = JSON.parse(localStorage.getItem("submittedTasks") || "[]");
-  const container = document.getElementById("taskStatus");
-
-  if (tasks.length === 0) {
-    container.innerHTML = "<p>No tasks submitted yet.</p>";
-  } else {
-    container.innerHTML = tasks.map(task => `
-      <div class="mb-2">
-        <p><strong>${task.taskName}</strong>: 
-          <span class="${task.approved ? 'text-green-600' : 'text-yellow-600'}">
-            ${task.approved ? 'Approved' : 'Pending'}
-          </span>
-        </p>
-      </div>
-    `).join('');
-  }
-});
   </script>
 </body>
 </html>
