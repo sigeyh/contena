@@ -31,29 +31,6 @@
 </head>
 <body class="bg-gray-100">
   <div class="p-4 space-y-6">
-
-    <!-- Navigation Bar -->
-        <nav class="bg-blue-600 text-white p-4 flex justify-between items-center">
-          <h1 class="text-xl font-bold">Online Writing Jobs</h1>
-          <div id="navStatus" class="space-x-4">
-            <a href="index.html" class="hover:underline">Home</a>
-            <a href="register.html" class="hover:underline">Register</a>
-            <a href="login.html" class="hover:underline">Login</a>
-          </div>
-        </nav>
-
-
-   <!-- Register Prompt Modal -->
-      <div id="registerModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-        <div class="bg-white p-6 rounded-xl w-96 text-center space-y-4">
-          <h2 class="text-xl font-bold">You're not registered yet</h2>
-          <p class="text-gray-700">Please register to unlock access to tasks.</p>
-          <a href="register.html" class="bg-blue-600 text-white px-4 py-2 rounded-full inline-block">Register Now</a>
-        </div>
-      </div>
-
-
-  <div class="p-4 space-y-6">
     
     <!--Title section-->
     <section class="bg-white p-6 rounded-xl shadow">
@@ -82,43 +59,21 @@
     </section>
 
     <!-- Payment Modal -->
-
-<div id="paymentModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-  <div class="bg-white p-6 rounded-xl w-96 space-y-4 relative">
-    <h2 class="text-xl font-bold">Payment Instructions</h2>
-    <ul class="list-disc list-inside text-sm text-gray-700">
-      <li>Go to M-Pesa</li>
-      <li>Pay to till number: <strong id="tillNumber">9824375</strong></li>
-      <li>Amount: <strong>Ksh 300</strong></li>
-      <li>Paste confirmation message below:</li>
-      <li>
-        <button 
-          id="copyButton" 
-          onclick="copyToClipboard()" 
-          class="text-blue-600 hover:text-blue-800 mt-2">
-          Click to copy account
-        </button>
-      </li>
-    </ul>
-    <textarea id="mpesaMessage" class="w-full border rounded p-2 mt-2" rows="4" placeholder="Paste M-Pesa confirmation message here..."></textarea>
-    <button id="submitBtn" onclick="submitPayment()" class="bg-green-600 text-white px-4 py-2 rounded-full w-full">Paste & Buy</button>
-    <div id="loadingMessage" class="text-center text-sm text-gray-600 hidden">Processing payment, please wait...</div>
-    <button onclick="closePaymentModal()" class="absolute top-2 right-3 text-gray-400 hover:text-gray-600">✖</button>
-  </div>
-</div>
-
-<script>
-  // Function to copy till number to clipboard
-  function copyToClipboard() {
-    const tillNumber = document.getElementById('tillNumber').textContent;
-    navigator.clipboard.writeText(tillNumber).then(() => {
-      alert('Account number copied to clipboard!');
-    }).catch((err) => {
-      alert('Failed to copy: ', err);
-    });
-  }
-</script>
-
+    <div id="paymentModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div class="bg-white p-6 rounded-xl w-96 space-y-4 relative">
+        <h2 class="text-xl font-bold">Payment Instructions</h2>
+        <ul class="list-disc list-inside text-sm text-gray-700">
+          <li>Go to M-Pesa</li>
+          <li>Pay to till number: <strong>123456</strong></li>
+          <li>Amount: <strong>Ksh 100</strong></li>
+          <li>Paste confirmation message below:</li>
+        </ul>
+        <textarea id="mpesaMessage" class="w-full border rounded p-2 mt-2" rows="4" placeholder="Paste M-Pesa confirmation message here..."></textarea>
+        <button id="submitBtn" onclick="submitPayment()" class="bg-green-600 text-white px-4 py-2 rounded-full w-full">Paste & Buy</button>
+        <div id="loadingMessage" class="text-center text-sm text-gray-600 hidden">Processing payment, please wait...</div>
+        <button onclick="closePaymentModal()" class="absolute top-2 right-3 text-gray-400 hover:text-gray-600">✖</button>
+      </div>
+    </div>
 
     <!-- Job Listings Section -->
     <section class="relative">
@@ -218,38 +173,38 @@
             <input type="file" class="block w-full text-sm text-gray-600 border rounded p-2">
           </div>
         </div>
-        <!-- Register Prompt Modal -->
-          <div id="registerModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div class="bg-white p-6 rounded-xl w-96 text-center space-y-4">
-              <h2 class="text-xl font-bold">You're not registered yet</h2>
-              <p class="text-gray-700">Please register to unlock access to tasks.</p>
-              <a href="register.html" class="bg-blue-600 text-white px-4 py-2 rounded-full inline-block">Register Now</a>
-            </div>
-          </div>
+
 
       </div>
     </section>
   </div>
 
   <script>
-   document.addEventListener("DOMContentLoaded", function () {
-  const navStatus = document.getElementById("navStatus");
-  const isLoggedIn = localStorage.getItem("isLoggedIn");
+    function openPaymentModal() {
+      document.getElementById('paymentModal').classList.remove('hidden');
+    }
 
-  // Show "Logged in" status if user is logged in
-  if (isLoggedIn === "true") {
-    navStatus.innerHTML = `
-      <a href="index.html" class="hover:underline">Home</a>
-      <span class="bg-green-600 text-white px-3 py-1 rounded-full">Logged in</span>
-    `;
-  }
-  // Hide register modal if accidentally triggered
-  const regModal = document.getElementById("registerModal");
-  if (regModal) regModal.remove();
-});
+    function closePaymentModal() {
+      document.getElementById('paymentModal').classList.add('hidden');
+    }
 
+    function submitPayment() {
+      const btn = document.getElementById('submitBtn');
+      const loading = document.getElementById('loadingMessage');
+      btn.disabled = true;
+      loading.classList.remove('hidden');
+
+      setTimeout(() => {
+        document.getElementById('paymentModal').classList.add('hidden');
+        document.getElementById('jobSection').classList.remove('blur-sm');
+        document.getElementById('lockOverlay').classList.add('hidden');
+      }, 3000);
+    }
+
+    function toggleTaskDetails(button) {
+      const task = button.nextElementSibling;
+      task.classList.toggle('hidden');
+    }
   </script>
-    
 </body>
 </html>
-
