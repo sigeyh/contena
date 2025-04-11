@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Writing Jobs</title>
+
+  <!-- Meta Tags for PWA (Progressive Web App) -->
+  <link rel="manifest" href="/manifest.json">
+  
+  <!-- iOS-specific meta tags -->
+  <meta name="apple-mobile-web-app-title" content="Online Writing Jobs">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="/icons/icon-192x192.png"> <!-- iOS icon -->
+  
+  <!-- Android-specific meta tags -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192x192.png">
+  
+  <!-- General meta tags for browser compatibility -->
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Find and complete online writing and transcription jobs">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+   
+  <!--Custom Stylesheet-->
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+<body class="bg-gray-100">
+  <div class="p-4 space-y-6">
+    
+    <!--Title section-->
+    <section class="bg-white p-6 rounded-xl shadow">
+        <h2 class="text-2xl font-bold mb-2">Contena</h2>
+        <p>Powerful Tools & Proven Training to Launch Your Writing Career
+
+          Contena® has helped thousands of people to get started with freelance writing. Discover the best jobs and get hired to work remotely for great companies.</p>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="bg-white p-6 rounded-xl shadow">
+      <h2 class="text-2xl font-bold mb-2">About Us</h2>
+      <p>We provide high-quality online writing and transcription jobs. Our platform connects skilled freelancers with tasks ranging from content writing to audio transcription. Payment is required to unlock full access to tasks.</p>
+    </section>
+
+    <!-- What and How Section -->
+    <section class="bg-white p-6 rounded-xl shadow">
+      <h2 class="text-2xl font-bold mb-2">How It Works</h2>
+      <p>Select a job category, pay to activate your account, and get started with available tasks.</p>
+    </section>
+
+    <!-- Payment Timer Section -->
+    <section class="bg-white p-6 rounded-xl shadow">
+      <h2 class="text-2xl font-bold mb-2">Activate Account</h2>
+      <button onclick="openPaymentModal()" class="bg-green-600 text-white px-4 py-2 rounded-full">Pay Now</button>
+    </section>
+
+    <!-- Payment Modal -->
+
+<div id="paymentModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+  <div class="bg-white p-6 rounded-xl w-96 space-y-4 relative">
+    <h2 class="text-xl font-bold">Payment Instructions</h2>
+    <ul class="list-disc list-inside text-sm text-gray-700">
+      <li>Go to M-Pesa</li>
+      <li>Pay to till number: <strong id="tillNumber">9824375</strong></li>
+      <li>Amount: <strong>Ksh 300</strong></li>
+      <li>Paste confirmation message below:</li>
+      <li>
+        <button 
+          id="copyButton" 
+          onclick="copyToClipboard()" 
+          class="text-blue-600 hover:text-blue-800 mt-2">
+          Click to copy account
+        </button>
+      </li>
+    </ul>
+    <textarea id="mpesaMessage" class="w-full border rounded p-2 mt-2" rows="4" placeholder="Paste M-Pesa confirmation message here..."></textarea>
+    <button id="submitBtn" onclick="submitPayment()" class="bg-green-600 text-white px-4 py-2 rounded-full w-full">Paste & Buy</button>
+    <div id="loadingMessage" class="text-center text-sm text-gray-600 hidden">Processing payment, please wait...</div>
+    <button onclick="closePaymentModal()" class="absolute top-2 right-3 text-gray-400 hover:text-gray-600">✖</button>
+  </div>
+</div>
+
+<script>
+  // Function to copy till number to clipboard
+  function copyToClipboard() {
+    const tillNumber = document.getElementById('tillNumber').textContent;
+    navigator.clipboard.writeText(tillNumber).then(() => {
+      alert('Account number copied to clipboard!');
+    }).catch((err) => {
+      alert('Failed to copy: ', err);
+    });
+  }
+</script>
+
+
+    <!-- Job Listings Section -->
+    <section class="relative">
+      <div id="lockOverlay" class="absolute inset-0 bg-white bg-opacity-90 flex items-center justify-center z-10">
+        <div class="text-center">
+          <h3 class="text-xl font-bold mb-2">Activate your account to view tasks</h3>
+          <button onclick="openPaymentModal()" class="bg-green-600 text-white px-4 py-2 rounded-full">Activate Account</button>
+        </div>
+      </div>
+
+      <div id="jobSection" class="grid grid-cols-1 md:grid-cols-2 gap-4 blur-sm">
+
+        <!-- Proofreader & Editor Task with 300-word Article for proofreading -->
+        <div class="bg-white p-4 rounded-xl shadow">
+          <h3 class="text-xl font-bold">Proofreader & Editor</h3>
+          <p class="text-sm text-gray-500 mb-2">Task: Proofread and edit the 300-word article below for grammar, punctuation, clarity, and overall readability.</p>
+          
+          <!-- Article for proofreading -->
+          <div class="bg-gray-100 p-4 rounded-md mb-4">
+            <h4 class="font-semibold text-lg mb-2">Original Article (300 words):</h4>
+            <p><strong>The Benefits of Drinking Water</strong></p>
+            <p>Drinking water is essential for maintaining overall health and well-being. It is the most natural form of hydration and helps in various bodily functions such as regulating body temperature, transporting nutrients, and flushing out toxins. However, many people tend to forget the importance of drinking enough water throughout the day.</p>
+            <p>First and foremost, staying hydrated improves cognitive function. Studies show that even mild dehydration can negatively impact concentration and short-term memory. Furthermore, water helps keep our skin hydrated and fresh, giving it a youthful appearance and preventing dryness.</p>
+            <p>In addition to these, drinking water can aid in weight management. Often, people confuse thirst with hunger, leading them to overeat. Drinking a glass of water before a meal can help reduce appetite and prevent overeating. Water also boosts metabolism, allowing your body to burn calories more efficiently.</p>
+            <p>Another benefit is that drinking enough water helps prevent headaches, which are often caused by dehydration. A hydrated body also supports a healthy digestive system, reducing the risk of constipation.</p>
+            <p>It is recommended to drink at least 8 cups of water a day, but this can vary depending on factors such as age, climate, and physical activity level. Carrying a water bottle around and setting reminders to drink throughout the day can help maintain proper hydration levels.</p>
+            <p>In conclusion, drinking water has a profound effect on our overall health. It is vital to prioritize hydration for better physical and mental well-being.</p>
+          </div>
+
+          <ul class="text-sm text-gray-600 list-disc list-inside mb-2">
+            <li>Correct grammatical errors</li>
+            <li>Improve sentence flow and coherence</li>
+            <li>Provide an edited version alongside the original</li>
+          </ul>
+
+          <p class="font-semibold text-green-700">Ksh 1120</p>
+          <button onclick="toggleTaskDetails(this)" class="mt-2 bg-blue-600 text-white px-3 py-1 rounded">View Task</button>
+          <div class="hidden mt-3">
+            <label class="block mb-1 text-sm font-medium">Submit your file:</label>
+            <input type="file" class="block w-full text-sm text-gray-600 border rounded p-2">
+          </div>
+        </div>
+
+        <!-- Another Example Task (Research Assistant) -->
+        <div class="bg-white p-4 rounded-xl shadow">
+          <h3 class="text-xl font-bold">Research Assistant</h3>
+          <p class="text-sm text-gray-500 mb-2">Task: Conduct research on the latest trends in AI technology. Provide a 500-word report summarizing your findings.</p>
+          
+          <ul class="text-sm text-gray-600 list-disc list-inside mb-2">
+            <li>Summarize key trends in the field of AI.</li>
+            <li>Discuss key advancements made in the past year.</li>
+            <li>Provide references and sources for the findings.</li>
+          </ul>
+
+          <p class="font-semibold text-green-700">Ksh 850</p>
+          <button onclick="toggleTaskDetails(this)" class="mt-2 bg-blue-600 text-white px-3 py-1 rounded">View Task</button>
+          <div class="hidden mt-3">
+            <label class="block mb-1 text-sm font-medium">Submit your file:</label>
+            <input type="file" class="block w-full text-sm text-gray-600 border rounded p-2">
+          </div>
+        </div>
+
+                <!-- Article Writing Task -->
+        <div class="bg-white p-4 rounded-xl shadow">
+          <h3 class="text-xl font-bold">Article Writing</h3>
+          <p class="text-sm text-gray-500 mb-2">Task: Write a 600-word article on the topic "The Role of Social Media in Modern Communication."</p>
+          
+          <ul class="text-sm text-gray-600 list-disc list-inside mb-2">
+            <li>Include an engaging introduction and conclusion.</li>
+            <li>Use subheadings to organize content.</li>
+            <li>Ensure proper grammar and originality.</li>
+          </ul>
+
+          <p class="font-semibold text-green-700">Ksh 970</p>
+          <button onclick="toggleTaskDetails(this)" class="mt-2 bg-blue-600 text-white px-3 py-1 rounded">View Task</button>
+          <div class="hidden mt-3">
+            <label class="block mb-1 text-sm font-medium">Submit your file:</label>
+            <input type="file" class="block w-full text-sm text-gray-600 border rounded p-2">
+          </div>
+        </div>
+
+        <!-- Essay Task -->
+        <div class="bg-white p-4 rounded-xl shadow">
+          <h3 class="text-xl font-bold">Essay</h3>
+          <p class="text-sm text-gray-500 mb-2">Task: Write a 750-word argumentative essay on "Should Remote Work Be the New Normal?"</p>
+          
+          <ul class="text-sm text-gray-600 list-disc list-inside mb-2">
+            <li>Present a clear thesis and supporting arguments.</li>
+            <li>Include counterarguments and rebuttals.</li>
+            <li>Follow academic writing conventions.</li>
+          </ul>
+
+          <p class="font-semibold text-green-700">Ksh 1050</p>
+          <button onclick="toggleTaskDetails(this)" class="mt-2 bg-blue-600 text-white px-3 py-1 rounded">View Task</button>
+          <div class="hidden mt-3">
+            <label class="block mb-1 text-sm font-medium">Submit your file:</label>
+            <input type="file" class="block w-full text-sm text-gray-600 border rounded p-2">
+          </div>
+        </div>
+
+
+      </div>
+    </section>
+  </div>
+
+  <script>
+    function openPaymentModal() {
+      document.getElementById('paymentModal').classList.remove('hidden');
+    }
+
+    function closePaymentModal() {
+      document.getElementById('paymentModal').classList.add('hidden');
+    }
+
+    function submitPayment() {
+      const btn = document.getElementById('submitBtn');
+      const loading = document.getElementById('loadingMessage');
+      btn.disabled = true;
+      loading.classList.remove('hidden');
+
+      setTimeout(() => {
+        document.getElementById('paymentModal').classList.add('hidden');
+        document.getElementById('jobSection').classList.remove('blur-sm');
+        document.getElementById('lockOverlay').classList.add('hidden');
+      }, 3000);
+    }
+
+    function toggleTaskDetails(button) {
+      const task = button.nextElementSibling;
+      task.classList.toggle('hidden');
+    }
+  </script>
+</body>
+</html>
