@@ -30,8 +30,55 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #718096;
   }
+  /* Navigation Bar Styles */
+nav {
+  background-color: #2563eb; /* Tailwind's blue-600 */
+  color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+nav h1 {
+  font-size: 1.25rem; /* text-xl */
+  font-weight: bold;
+  margin: 0;
+}
+
+#navStatus a {
+  margin-left: 1rem;
+  color: white;
+  text-decoration: none;
+  transition: text-decoration 0.3s ease;
+}
+
+#navStatus a:hover {
+  text-decoration: underline;
+}
+
+/* Optional: Add responsiveness */
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #navStatus {
+    margin-top: 0.5rem;
+  }
+
+  #navStatus a {
+    display: block;
+    margin: 0.25rem 0;
+  }
+}
+
   
   /* Add subtle animation to job cards on hover */
+
+
   .job-card:hover {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     transform: translateY(-4px);
