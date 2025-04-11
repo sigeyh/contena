@@ -212,6 +212,13 @@
   </div>
 
   <script>
+       // Check if the user is logged in
+    const loggedInUser = localStorage.getItem('loggedInUser');
+  
+    // If not logged in, redirect to the login page
+    if (!loggedInUser) {
+      window.location.href = "login.html";
+    
     function openPaymentModal() {
       document.getElementById('paymentModal').classList.remove('hidden');
     }
