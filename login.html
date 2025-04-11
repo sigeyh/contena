@@ -129,7 +129,7 @@
     </div>
 
     <script>
-            localStorage.setItem('loggedInUser', JSON.stringify(user)
+            
         document.getElementById('loginForm').addEventListener('submit', function (e) {
             e.preventDefault();
         
@@ -154,6 +154,10 @@
             } else {
                 alert('Invalid email or password');
             }
+            // const loggedInUser = localStorage.getItem('loggedInUser');
+            // if (!loggedInUser) {
+            //   window.location.href = "login.html";
+            // }
         });
     </script>
 
