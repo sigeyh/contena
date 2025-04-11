@@ -273,6 +273,25 @@
     localStorage.removeItem('loggedInUser');
     window.location.href = 'index.html';
   }
+    function copyToClipboard() {
+    const tillNumber = document.getElementById('tillNumber').innerText;
+    
+    // Create a temporary input to select and copy the value
+    const tempInput = document.createElement('input');
+    tempInput.value = tillNumber;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    tempInput.setSelectionRange(0, 99999); // For mobile devices
+
+    try {
+      document.execCommand('copy');
+      alert('Till number copied to clipboard!');
+    } catch (err) {
+      alert('Failed to copy text');
+    }
+
+    // Remove the temporary input after copying
+    document.body.removeChild(tempInput);
   </script>
 </body>
 </html>
