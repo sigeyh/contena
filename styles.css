@@ -1,0 +1,40 @@
+/* styles.css */
+
+/* Smooth modal transition */
+#paymentModal {
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Button hover effects */
+  button:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+    transition: all 0.2s ease;
+  }
+  
+  /* Custom scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #a0aec0;
+    border-radius: 10px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #718096;
+  }
+  
+  /* Add subtle animation to job cards on hover */
+  .job-card:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+    transition: all 0.3s ease;
+  }
+  
