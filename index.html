@@ -237,6 +237,20 @@
       const task = button.nextElementSibling;
       task.classList.toggle('hidden');
     }
+    
+    document.addEventListener("DOMContentLoaded", () => {
+      const isRegistered = localStorage.getItem("isRegistered");
+  
+      // Disable all interactive buttons if not registered
+      if (!isRegistered) {
+        document.querySelectorAll("button").forEach(btn => {
+          if (!btn.classList.contains("allow-before-register")) {
+            btn.disabled = true;
+            btn.classList.add("opacity-50", "cursor-not-allowed");
+            btn.title = "Please register to use this feature.";
+          }
+        });
+
   </script>
 </body>
 </html>
