@@ -206,7 +206,14 @@
             <input type="file" class="block w-full text-sm text-gray-600 border rounded p-2">
           </div>
         </div>
-
+        <!-- Register Prompt Modal -->
+          <div id="registerModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-white p-6 rounded-xl w-96 text-center space-y-4">
+              <h2 class="text-xl font-bold">You're not registered yet</h2>
+              <p class="text-gray-700">Please register to unlock access to tasks.</p>
+              <a href="register.html" class="bg-blue-600 text-white px-4 py-2 rounded-full inline-block">Register Now</a>
+            </div>
+          </div>
 
       </div>
     </section>
@@ -238,7 +245,21 @@
       const task = button.nextElementSibling;
       task.classList.toggle('hidden');
     }
+    document.addEventListener("DOMContentLoaded", function () {
+    const navStatus = document.getElementById("navStatus");
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+    if (isLoggedIn === "true") {
+      navStatus.innerHTML = `
+        <a href="index.html" class="hover:underline">Home</a>
+        <span class="bg-green-600 text-white px-3 py-1 rounded-full">Logged in</span>
+      `;
+    } else {
+      // Show register modal if not logged in
+      document.getElementById("registerModal").classList.remove("hidden");
+    }
   </script>
+    
 </body>
 </html>
 
