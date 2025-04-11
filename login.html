@@ -130,40 +130,42 @@
 
     <script>
             
-        document.getElementById('loginForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-        
-            const loginEmail = document.getElementById('loginEmail').value.trim();
-            const loginPassword = document.getElementById('loginPassword').value;
+       document.getElementById('loginForm').addEventListener('submit', function (e) {
+        e.preventDefault();
 
-            // Retrieve users from localStorage
-            const users = JSON.parse(localStorage.getItem('users') || '[]');
+        const loginEmail = document.getElementById('loginEmail').value.trim();
+        const loginPassword = document.getElementById('loginPassword').value;
 
-            // Check if the user exists and credentials match
-            const user = users.find(u => u.email === loginEmail && u.password === loginPassword);
+        // Retrieve users from localStoragedocument.getElementById('loginForm').addEventListener('submit', function (e) {
+        e.preventDefault();
 
-            if (user) {
-                // Store logged-in user data in localStorage
-                localStorage.setItem('loggedInUser', JSON.stringify(user));
+        const loginEmail = document.getElementById('loginEmail').value.trim();
+        const loginPassword = document.getElementById('loginPassword').value;
 
-                // Show registration date on login success
-                alert(`Welcome back, ${user.name}!\sucessfull: ${new Date(user.registeredAt).toLocaleDateString()}`);
+        // Retrieve users from localStorage
+        const users = JSON.parse(localStorage.getItem('users') || '[]');
 
-                // Redirect to the homepage (or any other page)
-                window.location.href = "index.html";
-            } else {
-                alert('Invalid email or password');
-            }
-            // const loggedInUser = localStorage.getItem('loggedInUser');
-            // if (!loggedInUser) {
-            //   window.location.href = "login.html";
-            // }
-            
-            // if (userIsNotLoggedIn) {
-            //   alert("You must login first!");
-            //   return;
-            // }
-        });
+        // Check if the user exists and credentials match
+        const user = users.find(u => u.email === loginEmail && u.password === loginPassword);
+
+        if (user) {
+            // Store logged-in user data in localStorage
+            localStorage.setItem('loggedInUser', JSON.stringify(user));
+
+            // NEW: Set logged-in flag and user name
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('userName', user.name);
+
+            // Show registration date on login success
+            alert(`Welcome back, ${user.name}! Successful login: ${new Date(user.registeredAt).toLocaleDateString()}`);
+
+            // Redirect to the homepage
+            window.location.href = "index.html";
+        } else {
+            alert('Invalid email or password');
+        }
+    });
+       
     </script>
 
 </body>
