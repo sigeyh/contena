@@ -4,7 +4,7 @@ self.addEventListener('install', (event) => {
       caches.open('my-cache').then((cache) => {
         return cache.addAll([
           '/',
-          '/index.html',
+          '/login.html',
           '/style.css',
           '/script.js',
           '/icons/icon-192x192.png',
