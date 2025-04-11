@@ -1,87 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Writing Jobs</title>
-  
+    <title>Online Writing Jobs - Login</title>
+
     <!-- Meta Tags for PWA (Progressive Web App) -->
     <link rel="manifest" href="/manifest.json">
-    
+
     <!-- iOS-specific meta tags -->
     <meta name="apple-mobile-web-app-title" content="Online Writing Jobs">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="apple-touch-icon" href="/icons/icon-192x192.png"> <!-- iOS icon -->
-    
+
     <!-- Android-specific meta tags -->
     <meta name="mobile-web-app-capable" content="yes">
     <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192x192.png">
-    
+
     <!-- General meta tags for browser compatibility -->
     <meta name="theme-color" content="#ffffff">
     <meta name="description" content="Find and complete online writing and transcription jobs">
-    
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-     
+
     <!--Custom Stylesheet-->
     <link rel="stylesheet" href="styles.css">
-  
+
+    <style>
+        /* Ensure full page height for login form */
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f3f4f6;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .login-container form {
+            width: 100%;
+        }
+
+        .login-container form .form-group {
+            margin-bottom: 15px;
+        }
+
+        .login-container form input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .login-container .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .login-container .submit-btn:hover {
+            background-color: #45a049;
+        }
+
+        .login-container .footer-text {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .login-container .footer-text a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+
+        .login-container .footer-text a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
 </head>
-<body class="bg-gray-100 flex justify-center items-center h-screen">
 
-  <div class="bg-white p-6 rounded-xl shadow-lg w-96">
-    <h2 class="text-2xl font-bold mb-4">Login</h2>
-    
-    <!-- Login Form -->
-    <form id="loginForm">
-      <div class="mb-4">
-        <label for="loginEmail" class="block text-sm font-medium text-gray-600">Email</label>
-        <input type="email" id="loginEmail" class="w-full border rounded p-2 mt-1" required />
-      </div>
-      
-      <div class="mb-4">
-        <label for="loginPassword" class="block text-sm font-medium text-gray-600">Password</label>
-        <input type="password" id="loginPassword" class="w-full border rounded p-2 mt-1" required />
-      </div>
-      
-      <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded-full w-full">Log In</button>
-    </form>
-    
-    <div class="mt-4 text-center">
-      <p class="text-sm">Don't have an account? <a href="register.html" class="text-blue-600">Register</a></p>
+<body>
+
+    <div class="login-container">
+        <h2 class="text-2xl font-bold">Login</h2>
+
+        <!-- Login Form -->
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="loginEmail" class="block text-sm font-medium text-gray-600">Email</label>
+                <input type="email" id="loginEmail" class="w-full border rounded p-2 mt-1" required />
+            </div>
+
+            <div class="form-group">
+                <label for="loginPassword" class="block text-sm font-medium text-gray-600">Password</label>
+                <input type="password" id="loginPassword" class="w-full border rounded p-2 mt-1" required />
+            </div>
+
+            <button type="submit" class="submit-btn">Log In</button>
+        </form>
+
+        <div class="footer-text mt-4">
+            <p class="text-sm">Don't have an account? <a href="register.html">Register</a></p>
+        </div>
     </div>
-  </div>
 
-  <script>
-    document.getElementById('loginForm').addEventListener('submit', function (e) {
-      e.preventDefault();
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
 
-      const loginEmail = document.getElementById('loginEmail').value.trim();
-      const loginPassword = document.getElementById('loginPassword').value;
+            const loginEmail = document.getElementById('loginEmail').value.trim();
+            const loginPassword = document.getElementById('loginPassword').value;
 
-      // Retrieve users from localStorage
-      const users = JSON.parse(localStorage.getItem('users') || '[]');
+            // Retrieve users from localStorage
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
 
-      // Check if the user exists and credentials match
-      const user = users.find(u => u.email === loginEmail && u.password === loginPassword);
+            // Check if the user exists and credentials match
+            const user = users.find(u => u.email === loginEmail && u.password === loginPassword);
 
-      if (user) {
-        // Store logged-in user data in localStorage
-        localStorage.setItem('loggedInUser', JSON.stringify(user));
+            if (user) {
+                // Store logged-in user data in localStorage
+                localStorage.setItem('loggedInUser', JSON.stringify(user));
 
-        // Show registration date on login success
-        alert(`Welcome back, ${user.name}!\nYou registered on: ${new Date(user.registeredAt).toLocaleDateString()}`);
+                // Show registration date on login success
+                alert(`Welcome back, ${user.name}!\nYou registered on: ${new Date(user.registeredAt).toLocaleDateString()}`);
 
-        // Redirect to the homepage (or any other page)
-        window.location.href = "index.html";
-      } else {
-        alert('Invalid email or password');
-      }
-    });
-  </script>
+                // Redirect to the homepage (or any other page)
+                window.location.href = "index.html";
+            } else {
+                alert('Invalid email or password');
+            }
+        });
+    </script>
 
 </body>
-</html>
 
+</html>
