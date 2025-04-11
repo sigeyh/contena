@@ -70,14 +70,22 @@
     </section>
 
     <!-- Payment Modal -->
+    
     <div id="paymentModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div class="bg-white p-6 rounded-xl w-96 space-y-4 relative">
         <h2 class="text-xl font-bold">Payment Instructions</h2>
         <ul class="list-disc list-inside text-sm text-gray-700">
           <li>Go to M-Pesa</li>
-          <li>Pay to till number: <strong>123456</strong></li>
-          <li>Amount: <strong>Ksh 100</strong></li>
+          <li>Pay to till number: <strong id="tillNumber">9824375</strong></li>
+          <li>Amount: <strong>Ksh 300</strong></li>
           <li>Paste confirmation message below:</li>
+          <li>
+            <button 
+              id="copyButton" 
+              onclick="copyToClipboard()" 
+              class="text-blue-600 hover:text-blue-800 mt-2">
+              Click to copy account
+            </button>
         </ul>
         <textarea id="mpesaMessage" class="w-full border rounded p-2 mt-2" rows="4" placeholder="Paste M-Pesa confirmation message here..."></textarea>
         <button id="submitBtn" onclick="submitPayment()" class="bg-green-600 text-white px-4 py-2 rounded-full w-full">Paste & Buy</button>
