@@ -232,44 +232,28 @@
   </div>
 
   <script>
-    function openPaymentModal() {
-      document.getElementById('paymentModal').classList.remove('hidden');
-    }
+   document.addEventListener("DOMContentLoaded", function () {
+  const navStatus = document.getElementById("navStatus");
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
 
-    function closePaymentModal() {
-      document.getElementById('paymentModal').classList.add('hidden');
-    }
+  // Show "Logged in" status if user is logged in
+  if (isLoggedIn === "true") {
+    navStatus.innerHTML = `
+      <a href="index.html" class="hover:underline">Home</a>
+      <span class="bg-green-600 text-white px-3 py-1 rounded-full">Logged in</span>
+    `;
+  }
 
-    function submitPayment() {
-      const btn = document.getElementById('submitBtn');
-      const loading = document.getElementById('loadingMessage');
-      btn.disabled = true;
-      loading.classList.remove('hidden');
+  // Remove blur and unlock jobs section for all users
+  document.getElementById("jobSection").classList.remove("blur-sm");
+  const lockOverlay = document.getElementById("lockOverlay");
+  if (lockOverlay) lockOverlay.remove();
 
-      setTimeout(() => {
-        document.getElementById('paymentModal').classList.add('hidden');
-        document.getElementById('jobSection').classList.remove('blur-sm');
-        document.getElementById('lockOverlay').classList.add('hidden');
-      }, 3000);
-    }
+  // Hide register modal if accidentally triggered
+  const regModal = document.getElementById("registerModal");
+  if (regModal) regModal.remove();
+});
 
-    function toggleTaskDetails(button) {
-      const task = button.nextElementSibling;
-      task.classList.toggle('hidden');
-    }
-    document.addEventListener("DOMContentLoaded", function () {
-    const navStatus = document.getElementById("navStatus");
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
-
-    if (isLoggedIn === "true") {
-      navStatus.innerHTML = `
-        <a href="index.html" class="hover:underline">Home</a>
-        <span class="bg-green-600 text-white px-3 py-1 rounded-full">Logged in</span>
-      `;
-    } else {
-      // Show register modal if not logged in
-      document.getElementById("registerModal").classList.remove("hidden");
-    }
   </script>
     
 </body>
