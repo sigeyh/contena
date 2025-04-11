@@ -53,6 +53,11 @@
         localStorage.setItem('loggedInUser', JSON.stringify(newUser));
         window.location.href = "index.html"; // Redirect to main page
       }
+      // This runs after the user submits registration
+        function onRegisterSuccess() {
+          localStorage.setItem("isRegistered", "true");
+          window.location.href = "index.html"; // Redirect back to home
+        }
     });
   </script>
 </body>
