@@ -31,14 +31,15 @@
 </head>
 <body class="bg-gray-100">
   <div class="p-4 space-y-6">
-     <!-- Navigation Bar -->
-      <nav class="bg-green-600 text-white p-4">
-        <ul class="flex justify-between space-x-6">
-          <li><a href="index.html" class="hover:text-gray-200">Home</a></li>
-          <li><a href="register.html" class="hover:text-gray-200">Register</a></li>
-          <li><a href="login.html" class="hover:text-gray-200">Login</a></li>
-        </ul>
-      </nav>
+
+    <!-- Navigation Bar -->
+    <nav class="bg-green-600 text-white p-4">
+      <ul class="flex justify-between space-x-6">
+        <li><a href="index.html" class="hover:text-gray-200">Home</a></li>
+        <li><a href="register.html" class="hover:text-gray-200">Register</a></li>
+        <li><a href="login.html" class="hover:text-gray-200">Login</a></li>
+      </ul>
+    </nav>
 
   <div class="p-4 space-y-6">
     
@@ -212,13 +213,6 @@
   </div>
 
   <script>
-       // Check if the user is logged in
-    const loggedInUser = localStorage.getItem('loggedInUser');
-  
-    // If not logged in, redirect to the login page
-    if (!loggedInUser) {
-      window.location.href = "login.html";
-    
     function openPaymentModal() {
       document.getElementById('paymentModal').classList.remove('hidden');
     }
@@ -244,31 +238,7 @@
       const task = button.nextElementSibling;
       task.classList.toggle('hidden');
     }
-    
-    document.addEventListener("DOMContentLoaded", () => {
-      const isRegistered = localStorage.getItem("isRegistered");
-  
-      // Disable all interactive buttons if not registered
-      if (!isRegistered) {
-        document.querySelectorAll("button").forEach(btn => {
-          if (!btn.classList.contains("allow-before-register")) {
-            btn.disabled = true;
-            btn.classList.add("opacity-50", "cursor-not-allowed");
-            btn.title = "Please register to use this feature.";
-          }
-          
-          // const loggedInUser = localStorage.getItem('loggedInUser');
-          // if (!loggedInUser) {
-          //   window.location.href = "login.html";
-          // }
-
-          
-          // if (userIsNotLoggedIn) {
-          //   alert("You must login first!");
-          //   return;
-          // }
-        });
-
   </script>
 </body>
 </html>
+
