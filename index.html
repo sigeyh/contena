@@ -32,15 +32,18 @@
 <body class="bg-gray-100">
   <div class="p-4 space-y-6">
 
-    <!-- Navigation Bar -->
-        <nav class="bg-blue-600 text-white p-4 flex justify-between items-center">
-          <h1 class="text-xl font-bold">Contena Jobs</h1>
-          <div id="navStatus" class="space-x-4">
-            <a href="index.html" class="hover:underline">Home</a>
-            <a href="register.html" class="hover:underline">Register</a>
-            <a href="login.html" class="hover:underline">Login</a>
-          </div>
-        </nav>
+   <!-- Navigation Bar -->
+      <nav class="bg-blue-600 text-white p-4 flex justify-between items-center">
+        <h1 class="text-xl font-bold">Contena Jobs</h1>
+        <div id="navStatus" class="space-x-4">
+          <a href="index.html" class="hover:underline">Home</a>
+          <a href="register.html" id="registerLink" class="hover:underline">Register</a>
+          <a href="login.html" id="loginLink" class="hover:underline">Login</a>
+          <span id="userName" class="font-semibold"></span>
+          <button id="logoutBtn" onclick="logoutUser()" class="bg-red-500 px-3 py-1 rounded hidden">Logout</button>
+        </div>
+      </nav>
+
 
     
     <!--Title section-->
@@ -224,6 +227,28 @@
       const task = button.nextElementSibling;
       task.classList.toggle('hidden');
     }
+      document.addEventListener("DOMContentLoaded", function () {
+    const userName = localStorage.getItem("userName");
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+    if (isLoggedIn === "true" && userName) {
+      // Show user name
+      document.getElementById("userName").textContent = `Welcome, ${userName}`;
+      
+      // Hide login/register
+      document.getElementById("registerLink").style.display = "none";
+      document.getElementById("loginLink").style.display = "none";
+
+      // Show logout button
+      document.getElementById("logoutBtn").classList.remove("hidden");
+    }
+  });
+
+  function logoutUser() {
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("userName");
+    location.reload(); // or redirect to login.html
+  }
   </script>
 </body>
 </html>
