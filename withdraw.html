@@ -39,6 +39,31 @@
             text-align: center;
             margin-top: 20px;
         }
+
+        /* Scrolling payment methods section */
+        .payment-methods {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 10px 0;
+            margin: 20px 0;
+        }
+
+        .payment-methods img {
+            max-height: 40px;
+            max-width: 120px;
+            object-fit: contain;
+        }
+
+        /* To enable smooth scrolling effect */
+        .payment-methods::-webkit-scrollbar {
+            display: none;
+        }
+
+        .payment-methods {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
 </head>
 
@@ -60,6 +85,13 @@
         </form>
 
         <p class="text-center mt-4 text-sm text-gray-600">Balance: <span id="userBalance">$0.00</span></p>
+
+        <!-- Scrolling Payment Methods -->
+        <div class="payment-methods">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/PayPal_2014_logo.svg/1200px-PayPal_2014_logo.svg.png" alt="PayPal" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Visa_Logo_2014.svg/1200px-Visa_Logo_2014.svg.png" alt="Visa" />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/79/M-Pesa_Logo.png" alt="M-Pesa" />
+        </div>
 
         <div class="footer-text mt-4">
             <p class="text-sm">Go back to <a href="index.html" class="text-blue-600 hover:underline">Home</a></p>
