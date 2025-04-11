@@ -34,31 +34,36 @@
   </div>
 
   <script>
-    document.getElementById('registerForm').addEventListener('submit', function (e) {
-      e.preventDefault();
+ document.getElementById('registerForm').addEventListener('submit', function (e) {
+    e.preventDefault();
 
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const password = document.getElementById('password').value;
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
 
-      const users = JSON.parse(localStorage.getItem('users') || '[]');
-      const emailExists = users.some(user => user.email === email);
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const emailExists = users.some(user => user.email === email);
 
-      if (emailExists) {
-        document.getElementById('errorMessage').classList.remove('hidden');
-      } else {
-        const newUser = { name, email, password };
-        users.push(newUser);
-        localStorage.setItem('users', JSON.stringify(users));
-        localStorage.setItem('loggedInUser', JSON.stringify(newUser));
-        window.location.href = "index.html"; // Redirect to main page
-      }
-      // This runs after the user submits registration
-        function onRegisterSuccess() {
-          localStorage.setItem("isRegistered", "true");
-          window.location.href = "index.html"; // Redirect back to home
-        }
-    });
+    if (emailExists) {
+      document.getElementById('errorMessage').classList.remove('hidden');
+    } else {
+      const newUser = {
+        name,
+        email,
+        password,
+        registeredAt: new Date().toISOString()
+      };
+      
+      users.push(newUser);
+      localStorage.setItem('users', JSON.stringify(users));
+      localStorage.setItem('loggedInUser', JSON.stringify(newUser));
+      localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('userName', name);
+
+      // Redirect to homepage
+      window.location.href = "index.html";
+    }
+  });
   </script>
 </body>
 </html>
