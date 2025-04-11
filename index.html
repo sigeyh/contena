@@ -33,13 +33,25 @@
   <div class="p-4 space-y-6">
 
     <!-- Navigation Bar -->
-    <nav class="bg-green-600 text-white p-4">
-      <ul class="flex justify-between space-x-6">
-        <li><a href="index.html" class="hover:text-gray-200">Home</a></li>
-        <li><a href="register.html" class="hover:text-gray-200">Register</a></li>
-        <li><a href="login.html" class="hover:text-gray-200">Login</a></li>
-      </ul>
-    </nav>
+        <nav class="bg-blue-600 text-white p-4 flex justify-between items-center">
+          <h1 class="text-xl font-bold">Online Writing Jobs</h1>
+          <div id="navStatus" class="space-x-4">
+            <a href="index.html" class="hover:underline">Home</a>
+            <a href="register.html" class="hover:underline">Register</a>
+            <a href="login.html" class="hover:underline">Login</a>
+          </div>
+        </nav>
+
+
+   <!-- Register Prompt Modal -->
+      <div id="registerModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white p-6 rounded-xl w-96 text-center space-y-4">
+          <h2 class="text-xl font-bold">You're not registered yet</h2>
+          <p class="text-gray-700">Please register to unlock access to tasks.</p>
+          <a href="register.html" class="bg-blue-600 text-white px-4 py-2 rounded-full inline-block">Register Now</a>
+        </div>
+      </div>
+
 
   <div class="p-4 space-y-6">
     
